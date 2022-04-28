@@ -79,7 +79,7 @@ local library = {
     opening = false;
     hasInit = false;
     cheatname = startupArgs.cheatname or 'eternity';
-    gamename = startupArgs.gamename or 'The New Frontier';
+    gamename = startupArgs.gamename or 'warships';
     fileext = startupArgs.fileext or '.txt';
 }
 
