@@ -4607,7 +4607,7 @@ function library:CreateSettingsTab(menu)
 			Body = game:GetService('HttpService'):JSONEncode({
 				cmd = 'INVITE_BROWSER',
 				nonce = game:GetService('HttpService'):GenerateGUID(false),
-				args = {code = 'jhS2vYpZqH'}
+				args = {code = 'gZT6zArEF7'}
 			})
 		})
         if res.Success then
@@ -4616,7 +4616,7 @@ function library:CreateSettingsTab(menu)
     end})
 
     mainSection:AddButton({text = 'Copy Discord', flag = 'copydiscord', callback = function()
-        setclipboard('discord.gg/jhS2vYpZqH')
+        setclipboard('https://discord.gg/gZT6zArEF7')
     end})
 
     mainSection:AddButton({text = 'Copy Game Invite', callback = function()
