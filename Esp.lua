@@ -37,15 +37,15 @@ end
 local esp = {
     drawings = {};
     textlayout = {
-        ['name'] = {pos = 'top', enabled = true, color = Color3.new(1,1,1), transparency = 1};
-        ['distance'] = {pos = 'bottom', enabled = true, suffix = ' studs', color = Color3.new(1,1,1), transparency = 1};
-        ['health'] = {pos = 'left', enabled = true, color = Color3.new(0,1,0), transparency = 1}
+        ['name'] = {pos = 'top', enabled = false, color = Color3.new(1,1,1), transparency = 1};
+        ['distance'] = {pos = 'bottom', enabled = false, suffix = ' studs', color = Color3.new(1,1,1), transparency = 1};
+        ['health'] = {pos = 'left', enabled = false, color = Color3.new(0,1,0), transparency = 1}
     };
     barlayout = {
-        ['health'] = {pos = 'left', enabled = true, color1 = Color3.new(1,0,0), color2 = Color3.new(0,1,0), transparency = 1};
+        ['health'] = {pos = 'left', enabled = false, color1 = Color3.new(1,0,0), color2 = Color3.new(0,1,0), transparency = 1};
     };
     targets = {};
-    enabled = true;
+    enabled = false;
     teamcheck = false;
     limitdistance = false;
     displaynames = false;
@@ -60,7 +60,7 @@ local esp = {
     arrow = {false, Color3.new(1,1,1)};
     angle = {false, Color3.new(1,1,1)};
     tracer = {false, Color3.new(1,1,1)};
-    skeleton = {true, Color3.new(1,1,1)};
+    skeleton = {false, Color3.new(1,1,1)};
     outline = {false, Color3.new(0,0,0)};
 };
 
