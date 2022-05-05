@@ -74,7 +74,7 @@ local library = {
         ['colortrans'] = 'https://octohook.xyz/assets/transparency.png';
     };
     numberStrings = {['Zero'] = 0, ['One'] = 1, ['Two'] = 2, ['Three'] = 3, ['Four'] = 4, ['Five'] = 5, ['Six'] = 6, ['Seven'] = 7, ['Eight'] = 8, ['Nine'] = 9};
-    signal = loadstring(game:HttpGet('https://octohook.xyz/module/signal.lua'))();
+    signal = loadstring(game:HttpGet('https://raw.githubusercontent.com/Eternal1ty/MainScripts/main/Signal'))();
     open = false;
     opening = false;
     hasInit = false;
