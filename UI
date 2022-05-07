@@ -590,7 +590,7 @@ function library:init()
         end)
 
         if s then
-            self:SendNotification('Successfully loaded config: '..name, 5, color3.FromRGB(170,0,255);
+            self:SendNotification('Successfully loaded config: '..name, 5, Color3.fromRGB(170,0,255));
         else
             self:SendNotification('Error loading config: '..tostring(e)..'. ('..tostring(name)..')', 5, c3new(1,0,0));
         end
