@@ -29,6 +29,7 @@ end
 -- // Variables
 local players, http, runservice, inputservice, tweenService, stats, actionservice = gs('Players'), gs('HttpService'), gs('RunService'), gs('UserInputService'), gs('TweenService'), gs('Stats'), gs('ContextActionService')
 local localplayer = players.LocalPlayer
+local tpservice= game:GetService("TeleportService")
 
 local floor, ceil, huge, pi, clamp = math.floor, math.ceil, math.huge, math.pi, math.clamp
 local c3new, fromrgb, fromhsv = Color3.new, Color3.fromRGB, Color3.fromHSV
@@ -4621,6 +4622,10 @@ function library:CreateSettingsTab(menu)
 
     mainSection:AddButton({text = 'Copy Game Invite', callback = function()
         setclipboard('Roblox.GameLauncher.joinGameInstance('..game.PlaceId..',"'..game.JobId..'")')
+    end})
+    
+    mainSection:AddButton({text = 'Rejoin', callback = function()
+        tpservice:Teleport(game.PlaceId, localplayer)
     end})
 
     mainSection:AddButton({text = 'Unload', confirm = true, callback = function()
