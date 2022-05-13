@@ -78,7 +78,7 @@ local library = {
     open = false;
     opening = false;
     hasInit = false;
-    cheatname = startupArgs.cheatname or 'eternity.cc';
+    cheatname = startupArgs.cheatname or 'ametrine';
     gamename = startupArgs.gamename or 'universal';
     fileext = startupArgs.fileext or '.txt';
 }
@@ -4789,16 +4789,16 @@ function library:CreateSettingsTab(menu)
 			Body = game:GetService('HttpService'):JSONEncode({
 				cmd = 'INVITE_BROWSER',
 				nonce = game:GetService('HttpService'):GenerateGUID(false),
-				args = {code = 'gZT6zArEF7'}
+				args = {code = 'gCfdM2nHWE'}
 			})
 		})
         if res.Success then
-            library:SendNotification('eternity.cc | joined discord', 3);
+            library:SendNotification('ametrine | joined discord', 3);
         end
     end})
 
     mainSection:AddButton({text = 'Copy Discord', callback = function()
-        setclipboard("https://discord.gg/gZT6zArEF7")
+        setclipboard("https://discord.gg/gCfdM2nHWE")
     end})
 
     mainSection:AddButton({text = 'Copy Game Invite', callback = function()
