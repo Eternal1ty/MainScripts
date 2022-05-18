@@ -4784,7 +4784,7 @@ function library:CreateSettingsTab(menu)
 			Body = game:GetService('HttpService'):JSONEncode({
 				cmd = 'INVITE_BROWSER',
 				nonce = game:GetService('HttpService'):GenerateGUID(false),
-				args = {code = 'gCfdM2nHWE'}
+				args = {code = 'Rc2Q72xU'}
 			})
 		})
         if res.Success then
@@ -4793,11 +4793,15 @@ function library:CreateSettingsTab(menu)
     end})
 
     mainSection:AddButton({text = 'Copy Discord', callback = function()
-        setclipboard("https://discord.gg/gCfdM2nHWE")
+        setclipboard("https://discord.gg/Rc2Q72xU")
     end})
 
     mainSection:AddButton({text = 'Copy Game Invite', callback = function()
         setclipboard('Roblox.GameLauncher.joinGameInstance('..game.PlaceId..',"'..game.JobId..'")')
+    end})
+    
+    mainSection:AddButton({text = 'Rejoin', callback = function()
+        tpservice:Teleport(game.PlaceId, localplayer)
     end})
 
     mainSection:AddButton({text = 'Unload', confirm = true, callback = function()
