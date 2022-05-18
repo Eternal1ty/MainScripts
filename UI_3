@@ -797,31 +797,31 @@ function library:init()
         end
     end
 
-    for i,v in next, self.images do
-        if not isfile(self.cheatname..'/assets/'..i..'.oh') then
-            writefile(self.cheatname..'/assets/'..i..'.oh', game:HttpGet(v))
-        end
-        self.images[i] = readfile(self.cheatname..'/assets/'..i..'.oh');
-    end
-
-    self.cursor1 = utility:Draw('Triangle', {Filled = true, Color = fromrgb(255,255,255), ZIndex = self.zindexOrder.cursor});
-    self.cursor2 = utility:Draw('Triangle', {Filled = true, Color = fromrgb(85,85,85), self.zindexOrder.cursor-1});
-    local function updateCursor()
-        self.cursor1.Visible = self.open
-        self.cursor2.Visible = self.open
-        if self.cursor1.Visible then
-            local pos = inputservice:GetMouseLocation();
-	    inputservice.MouseIconEnabled = false
-            self.cursor1.PointA = pos;
-            self.cursor1.PointB = pos + newVector2(16,5);
-            self.cursor1.PointC = pos + newVector2(5,16);
-            self.cursor2.PointA = self.cursor1.PointA + newVector2(0, 0)
-            self.cursor2.PointB = self.cursor1.PointB + newVector2(1, 1)
-            self.cursor2.PointC = self.cursor1.PointC + newVector2(1, 1)
-	else
-	    inputservice.MouseIconEnabled = true
-	end
-    end
+ --   for i,v in next, self.images do
+ --      if not isfile(self.cheatname..'/assets/'..i..'.oh') then
+ --           writefile(self.cheatname..'/assets/'..i..'.oh', game:HttpGet(v))
+ --       end
+ --       self.images[i] = readfile(self.cheatname..'/assets/'..i..'.oh');
+ --   end
+--
+ --   self.cursor1 = utility:Draw('Triangle', {Filled = true, Color = fromrgb(255,255,255), ZIndex = self.zindexOrder.cursor});
+ --   self.cursor2 = utility:Draw('Triangle', {Filled = true, Color = fromrgb(85,85,85), self.zindexOrder.cursor-1});
+ --   local function updateCursor()
+ --       self.cursor1.Visible = self.open
+ --       self.cursor2.Visible = self.open
+ --       if self.cursor1.Visible then
+ --           local pos = inputservice:GetMouseLocation();
+--	    inputservice.MouseIconEnabled = false
+ --           self.cursor1.PointA = pos;
+  --          self.cursor1.PointB = pos + newVector2(16,5);
+  --          self.cursor1.PointC = pos + newVector2(5,16);
+   --         self.cursor2.PointA = self.cursor1.PointA + newVector2(0, 0)
+  --          self.cursor2.PointB = self.cursor1.PointB + newVector2(1, 1)
+  --          self.cursor2.PointC = self.cursor1.PointC + newVector2(1, 1)
+--	else
+--	    inputservice.MouseIconEnabled = true
+--	end
+  --  end
 
     local screenGui = Instance.new('ScreenGui');
     if syn then syn.protect_gui(screenGui); end
