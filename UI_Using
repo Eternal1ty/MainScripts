@@ -1,16 +1,21 @@
 --[[
-    Library Made for https://octohook.xyz/ 
+
+    Library Made for https://octohook.xyz/
     Developed by liam#4567
-   
-    Liam rewrite this already
+
+    Ik this code is really shit in some places lol
+    will rewrite again i was just using some rly old stuff that i was lazy to rewrite
+    could've been a lot better and more optimized in some places and some things arent done as they should've been
+    got lazy when trying to make disable all roblox input when ui is open sooo that will be added later =)
+
 ]]
 
 -- // Load
 
 local startupArgs = ({...})[1] or {}
 
-if getgenv().library ~= nil then
-    getgenv().library:Unload();
+if library then
+    library:Unload();
 end
 
 if not game:IsLoaded() then
@@ -73,7 +78,7 @@ local library = {
     open = false;
     opening = false;
     hasInit = false;
-    cheatname = startupArgs.cheatname or 'eternity.pro';
+    cheatname = startupArgs.cheatname or 'octohook';
     gamename = startupArgs.gamename or 'universal';
     fileext = startupArgs.fileext or '.txt';
 }
@@ -82,7 +87,7 @@ library.themes = {
     {
         name = 'Default',
         theme = {
-            ['Accent']                    = fromrgb(230, 118, 110);
+            ['Accent']                    = fromrgb(255,135,255);
             ['Background']                = fromrgb(18,18,18);
             ['Border']                    = fromrgb(0,0,0);
             ['Border 1']                  = fromrgb(60,60,60);
@@ -688,6 +693,9 @@ function library:Unload()
     end
     table.clear(self.drawings)
     getgenv().library = nil
+    if esp then
+        esp:unload()
+    end
 end
 
 function library:init()
@@ -806,16 +814,13 @@ function library:init()
         self.cursor2.Visible = self.open
         if self.cursor1.Visible then
             local pos = inputservice:GetMouseLocation();
-	    inputservice.MouseIconEnabled = false
             self.cursor1.PointA = pos;
             self.cursor1.PointB = pos + newVector2(16,5);
             self.cursor1.PointC = pos + newVector2(5,16);
             self.cursor2.PointA = self.cursor1.PointA + newVector2(0, 0)
             self.cursor2.PointB = self.cursor1.PointB + newVector2(1, 1)
             self.cursor2.PointC = self.cursor1.PointC + newVector2(1, 1)
-	else
-	    inputservice.MouseIconEnabled = true
-	end
+        end
     end
 
     local screenGui = Instance.new('ScreenGui');
@@ -4708,9 +4713,9 @@ function library:init()
     end)
 
     self.keyIndicator = self.NewIndicator({title = 'Keybinds', pos = newUDim2(0,15,0,325), enabled = false});
-    self:SetTheme(library.theme);
     self:SetOpen(true);
     self.hasInit = true
+    self:SendNotification(self.cheatname..' | ui initalized', 5);
 
 end
 
@@ -4773,7 +4778,7 @@ function library:CreateSettingsTab(menu)
         end
     end})
 
-    mainSection:AddButton({text = 'Join Discord', confirm = true, callback = function(bool)
+    mainSection:AddButton({text = 'Join Discord', flag = 'joindiscord', confirm = true, callback = function()
         local res = syn.request({
 			Url = 'http://127.0.0.1:6463/rpc?v=1',
 			Method = 'POST',
@@ -4784,24 +4789,20 @@ function library:CreateSettingsTab(menu)
 			Body = game:GetService('HttpService'):JSONEncode({
 				cmd = 'INVITE_BROWSER',
 				nonce = game:GetService('HttpService'):GenerateGUID(false),
-				args = {code = 'Rc2Q72xU'}
+				args = {code = 'jhS2vYpZqH'}
 			})
 		})
         if res.Success then
-            library:SendNotification('ametrine | joined discord', 3);
+            library:SendNotification(library.cheatname..' | joined discord', 3);
         end
     end})
 
-    mainSection:AddButton({text = 'Copy Discord', callback = function()
-        setclipboard("https://discord.gg/Rc2Q72xU")
+    mainSection:AddButton({text = 'Copy Discord', flag = 'copydiscord', callback = function()
+        setclipboard('discord.gg/jhS2vYpZqH')
     end})
 
     mainSection:AddButton({text = 'Copy Game Invite', callback = function()
         setclipboard('Roblox.GameLauncher.joinGameInstance('..game.PlaceId..',"'..game.JobId..'")')
-    end})
-    
-    mainSection:AddButton({text = 'Rejoin', callback = function()
-        tpservice:Teleport(game.PlaceId, localplayer)
     end})
 
     mainSection:AddButton({text = 'Unload', confirm = true, callback = function()
