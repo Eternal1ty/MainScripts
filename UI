@@ -14,9 +14,9 @@
 
 local startupArgs = ({...})[1] or {}
 
-if library then
-    library:Unload();
-end
+--if library then
+--    library:Unload();
+--end
 
 if not game:IsLoaded() then
     game.Loaded:Wait()
@@ -29,7 +29,6 @@ end
 -- // Variables
 local players, http, runservice, inputservice, tweenService, stats, actionservice = gs('Players'), gs('HttpService'), gs('RunService'), gs('UserInputService'), gs('TweenService'), gs('Stats'), gs('ContextActionService')
 local localplayer = players.LocalPlayer
-local tpservice= game:GetService("TeleportService")
 
 local floor, ceil, huge, pi, clamp = math.floor, math.ceil, math.huge, math.pi, math.clamp
 local c3new, fromrgb, fromhsv = Color3.new, Color3.fromRGB, Color3.fromHSV
@@ -79,31 +78,31 @@ local library = {
     open = false;
     opening = false;
     hasInit = false;
-    cheatname = startupArgs.cheatname or 'eternity';
-    gamename = startupArgs.gamename or 'criminality';
+    cheatname = startupArgs.cheatname or 'optic';
+    gamename = startupArgs.gamename or 'universal';
     fileext = startupArgs.fileext or '.txt';
 }
 
 library.defaultTheme = {
-    ['Accent']                    = fromrgb(255,135,255);
-    ['Background']                = fromrgb(18,18,18);
+    ['Accent']                    = fromrgb(52, 201, 235);
+    ['Background']                = fromrgb(15,15,15);
     ['Border']                    = fromrgb(0,0,0);
     ['Border 1']                  = fromrgb(60,60,60);
-    ['Border 2']                  = fromrgb(35,35,35);
+    ['Border 2']                  = fromrgb(25,25,25);
     ['Border 3']                  = fromrgb(10,10,10);
     ['Primary Text']              = fromrgb(235,235,235);
-    ['Group Background']          = fromrgb(35,35,35);
-    ['Selected Tab Background']   = fromrgb(35,35,35);
-    ['Unselected Tab Background'] = fromrgb(18,18,18);
+    ['Group Background']          = fromrgb(25,25,25);
+    ['Selected Tab Background']   = fromrgb(25,25,25);
+    ['Unselected Tab Background'] = fromrgb(15,15,15);
     ['Selected Tab Text']         = fromrgb(245,245,245);
     ['Unselected Tab Text']       = fromrgb(145,145,145);
-    ['Section Background']        = fromrgb(18,18,18);
+    ['Section Background']        = fromrgb(15,15,15);
     ['Option Text 1']             = fromrgb(245,245,245);
     ['Option Text 2']             = fromrgb(195,195,195);
     ['Option Text 3']             = fromrgb(145,145,145);
     ['Option Border 1']           = fromrgb(50,50,50);
     ['Option Border 2']           = fromrgb(0,0,0);
-    ['Option Background']         = fromrgb(35,35,35);
+    ['Option Background']         = fromrgb(25,25,25);
 }
 
 local blacklistedKeys = {
@@ -939,7 +938,7 @@ function library:init()
             objs.border1 = utility:Draw('Square', {
                 Size = newUDim2(1,2,1,2);
                 Position = newUDim2(0,-1,0,-1);
-                ThemeColor = 'Border 2';
+                ThemeColor = 'Border 1';
                 Parent = objs.background;
                 ZIndex = z-1;
             })
@@ -4412,10 +4411,10 @@ function library:init()
         self.watermark = {
             objects = {};
             text = {
-                {self.cheatname, true},
+                {'optic.xyz', true},
                 {localplayer.Name, false},
                 {localplayer.DisplayName, false},
-                {'dev', true},
+                {'dev', false},
                 {'0 fps', true},
                 {'0ms', true},
                 {'00:00:00', true},
@@ -4532,7 +4531,7 @@ function library:init()
     self.keyIndicator = self.NewIndicator({title = 'Keybinds', pos = newUDim2(0,15,0,325), enabled = false});
     self:SetOpen(true);
     self.hasInit = true
-    self:SendNotification(self.cheatname..' | ui initalized', 5);
+    self:SendNotification('optic.xyz | ui initalized', 5);
 
 end
 
@@ -4597,7 +4596,7 @@ function library:CreateSettingsTab(menu)
         end
     end})
 
-    mainSection:AddButton({text = 'Join Discord', flag = 'joindiscord', confirm = true, callback = function()
+    mainSection:AddButton({text = 'Join Discord', confirm = true, callback = function(bool)
         local res = syn.request({
 			Url = 'http://127.0.0.1:6463/rpc?v=1',
 			Method = 'POST',
@@ -4608,24 +4607,20 @@ function library:CreateSettingsTab(menu)
 			Body = game:GetService('HttpService'):JSONEncode({
 				cmd = 'INVITE_BROWSER',
 				nonce = game:GetService('HttpService'):GenerateGUID(false),
-				args = {code = 'gZT6zArEF7'}
+				args = {code = 'gCfdM2nHWE'}
 			})
 		})
         if res.Success then
-            library:SendNotification(library.cheatname..' | joined discord', 3);
+            library:SendNotification('optic.xyz | joined discord', 3);
         end
     end})
 
-    mainSection:AddButton({text = 'Copy Discord', flag = 'copydiscord', callback = function()
-        setclipboard('https://discord.gg/gZT6zArEF7')
+    mainSection:AddButton({text = 'Copy Discord', callback = function()
+        setclipboard("https://discord.gg/gCfdM2nHWE")
     end})
 
     mainSection:AddButton({text = 'Copy Game Invite', callback = function()
         setclipboard('Roblox.GameLauncher.joinGameInstance('..game.PlaceId..',"'..game.JobId..'")')
-    end})
-    
-    mainSection:AddButton({text = 'Rejoin', callback = function()
-        tpservice:Teleport(game.PlaceId, localplayer)
     end})
 
     mainSection:AddButton({text = 'Unload', confirm = true, callback = function()
