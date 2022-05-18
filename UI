@@ -80,7 +80,7 @@ local library = {
     opening = false;
     hasInit = false;
     cheatname = startupArgs.cheatname or 'eternity';
-    gamename = startupArgs.gamename or 'criminality';
+    gamename = startupArgs.gamename or 'universal';
     fileext = startupArgs.fileext or '.txt';
 }
 
