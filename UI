@@ -14,9 +14,9 @@
 
 local startupArgs = ({...})[1] or {}
 
---if library then
---    library:Unload();
---end
+if library then
+    library:Unload();
+end
 
 if not game:IsLoaded() then
     game.Loaded:Wait()
@@ -74,35 +74,35 @@ local library = {
         ['colortrans'] = 'https://octohook.xyz/assets/transparency.png';
     };
     numberStrings = {['Zero'] = 0, ['One'] = 1, ['Two'] = 2, ['Three'] = 3, ['Four'] = 4, ['Five'] = 5, ['Six'] = 6, ['Seven'] = 7, ['Eight'] = 8, ['Nine'] = 9};
-    signal = loadstring(game:HttpGet('https://raw.githubusercontent.com/Eternal1ty/MainScripts/main/Signal'))();
+    signal = loadstring(game:HttpGet('https://octohook.xyz/module/signal.lua'))();
     open = false;
     opening = false;
     hasInit = false;
-    cheatname = startupArgs.cheatname or 'optic';
-    gamename = startupArgs.gamename or 'universal';
+    cheatname = startupArgs.cheatname or 'eternity';
+    gamename = startupArgs.gamename or 'warships';
     fileext = startupArgs.fileext or '.txt';
 }
 
 library.defaultTheme = {
-    ['Accent']                    = fromrgb(52, 201, 235);
-    ['Background']                = fromrgb(15,15,15);
+    ['Accent']                    = fromrgb(255,135,255);
+    ['Background']                = fromrgb(18,18,18);
     ['Border']                    = fromrgb(0,0,0);
     ['Border 1']                  = fromrgb(60,60,60);
-    ['Border 2']                  = fromrgb(25,25,25);
+    ['Border 2']                  = fromrgb(35,35,35);
     ['Border 3']                  = fromrgb(10,10,10);
     ['Primary Text']              = fromrgb(235,235,235);
-    ['Group Background']          = fromrgb(25,25,25);
-    ['Selected Tab Background']   = fromrgb(25,25,25);
-    ['Unselected Tab Background'] = fromrgb(15,15,15);
+    ['Group Background']          = fromrgb(35,35,35);
+    ['Selected Tab Background']   = fromrgb(35,35,35);
+    ['Unselected Tab Background'] = fromrgb(18,18,18);
     ['Selected Tab Text']         = fromrgb(245,245,245);
     ['Unselected Tab Text']       = fromrgb(145,145,145);
-    ['Section Background']        = fromrgb(15,15,15);
+    ['Section Background']        = fromrgb(18,18,18);
     ['Option Text 1']             = fromrgb(245,245,245);
     ['Option Text 2']             = fromrgb(195,195,195);
     ['Option Text 3']             = fromrgb(145,145,145);
     ['Option Border 1']           = fromrgb(50,50,50);
     ['Option Border 2']           = fromrgb(0,0,0);
-    ['Option Background']         = fromrgb(25,25,25);
+    ['Option Background']         = fromrgb(35,35,35);
 }
 
 local blacklistedKeys = {
@@ -938,7 +938,7 @@ function library:init()
             objs.border1 = utility:Draw('Square', {
                 Size = newUDim2(1,2,1,2);
                 Position = newUDim2(0,-1,0,-1);
-                ThemeColor = 'Border 1';
+                ThemeColor = 'Border 2';
                 Parent = objs.background;
                 ZIndex = z-1;
             })
@@ -4411,10 +4411,10 @@ function library:init()
         self.watermark = {
             objects = {};
             text = {
-                {'optic.xyz', true},
+                {self.cheatname, true},
                 {localplayer.Name, false},
                 {localplayer.DisplayName, false},
-                {'dev', false},
+                {'dev', true},
                 {'0 fps', true},
                 {'0ms', true},
                 {'00:00:00', true},
@@ -4531,7 +4531,7 @@ function library:init()
     self.keyIndicator = self.NewIndicator({title = 'Keybinds', pos = newUDim2(0,15,0,325), enabled = false});
     self:SetOpen(true);
     self.hasInit = true
-    self:SendNotification('optic.xyz | ui initalized', 5);
+    self:SendNotification(self.cheatname..' | ui initalized', 5);
 
 end
 
@@ -4596,7 +4596,7 @@ function library:CreateSettingsTab(menu)
         end
     end})
 
-    mainSection:AddButton({text = 'Join Discord', confirm = true, callback = function(bool)
+    mainSection:AddButton({text = 'Join Discord', flag = 'joindiscord', confirm = true, callback = function()
         local res = syn.request({
 			Url = 'http://127.0.0.1:6463/rpc?v=1',
 			Method = 'POST',
@@ -4607,16 +4607,16 @@ function library:CreateSettingsTab(menu)
 			Body = game:GetService('HttpService'):JSONEncode({
 				cmd = 'INVITE_BROWSER',
 				nonce = game:GetService('HttpService'):GenerateGUID(false),
-				args = {code = 'gCfdM2nHWE'}
+				args = {code = 'gZT6zArEF7'}
 			})
 		})
         if res.Success then
-            library:SendNotification('optic.xyz | joined discord', 3);
+            library:SendNotification(library.cheatname..' | joined discord', 3);
         end
     end})
 
-    mainSection:AddButton({text = 'Copy Discord', callback = function()
-        setclipboard("https://discord.gg/gCfdM2nHWE")
+    mainSection:AddButton({text = 'Copy Discord', flag = 'copydiscord', callback = function()
+        setclipboard('https://discord.gg/gZT6zArEF7')
     end})
 
     mainSection:AddButton({text = 'Copy Game Invite', callback = function()
