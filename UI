@@ -74,7 +74,7 @@ local library = {
         ['colortrans'] = 'https://raw.githubusercontent.com/Eternal1ty/MainScripts/main/transparency.png';
     };
     numberStrings = {['Zero'] = 0, ['One'] = 1, ['Two'] = 2, ['Three'] = 3, ['Four'] = 4, ['Five'] = 5, ['Six'] = 6, ['Seven'] = 7, ['Eight'] = 8, ['Nine'] = 9};
-    signal = loadstring(game:HttpGet('https://raw.githubusercontent.com/Eternal1ty/MainScripts/main/Signal'))();
+    signal = loadstring(game:HttpGet('https://raw.githubusercontent.com/Quenty/NevermoreEngine/23c4c96158a582b30f13d58ebb8b9f8139aca130/src/signal/src/Shared/Signal.lua'))();
     open = false;
     opening = false;
     hasInit = false;
