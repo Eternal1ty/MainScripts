@@ -277,7 +277,7 @@ function esp:init()
                     if pass and onScreen then
 
                         local boundingCFrame, boundingSize = char:GetBoundingBox()
-                        local size = Vector2.new( 1000 / worldToViewportPoint(CurrentyCamera, Roopart.Position), / worldToViewportPoint(CurrentyCamera, Head.Position) + Vector3.new(0, 0.5, 0)
+                        local size = math.clamp((camera:WorldToViewportPoint((boundingCFrame * CFrame.new(0, -(boundingSize.Y / 2), 0)).p).Y - camera:WorldToViewportPoint((boundingCFrame * CFrame.new(0, boundingSize.Y / 2, 0)).p).Y) / 2, 1, 300);
                         local size = Vector2.new(math.floor(size * 1.35), math.floor(size * 2.15));
                         local pos = Vector2.new(math.floor(screenPos.X), math.floor(screenPos.Y)) - Vector2.new(math.floor(size.X/2), math.floor(size.Y/2));
                         local bottom = Vector2.new(pos.X + size.X / 2, pos.Y + size.Y);
