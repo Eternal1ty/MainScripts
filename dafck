@@ -1,5 +1,6 @@
-local TargetPlayer = "turnbackplayz"
-
+if esp then
+    esp:unload();
+end
 
 local connections = {};
 local players = game:GetService('Players');
@@ -37,14 +38,14 @@ local esp = {
     drawings = {};
     textlayout = {
         ['name'] = {pos = 'top', enabled = false, color = Color3.new(1,1,1), transparency = 1};
-        ['distance'] = {pos = 'bottom', enabled = false, suffix = ' studs', color = Color3.new(1,1,1), transparency = 1};
-        ['health'] = {pos = 'left', enabled = false, color = Color3.new(0,1,0), transparency = 1}
+        ['distance'] = {pos = 'bottom', enabled = true, suffix = ' m', color = Color3.new(1,1,1), transparency = 1};
+        ['health'] = {pos = 'top', enabled = true, color = Color3.new(0,1,0), transparency = 1}
     };
     barlayout = {
-        ['health'] = {pos = 'left', enabled = false, color1 = Color3.new(1,0,0), color2 = Color3.new(0,1,0), transparency = 1};
+        ['health'] = {pos = 'right', enabled = false, color1 = Color3.new(1,0,0), color2 = Color3.new(0,1,0), transparency = 1};
     };
     targets = {};
-    enabled = false;
+    enabled = true;
     teamcheck = false;
     limitdistance = false;
     displaynames = false;
@@ -54,8 +55,7 @@ local esp = {
     textfont = 2;
     targetcolor = Color3.new(1,.15,.15);
     chams = {false, Color3.new(0,0,1), Color3.new(0,0,0), .25, 0};
-    chamsSpec = {false, Color3.new(0,0,1), Color3.new(0,0,0), .25, 0};
-    box = {false, Color3.new(1,1,1)};
+    box = {true, Color3.new(1,1,1)};
     boxfill = {false, Color3.new(.5,0,0), .25};
     arrow = {false, Color3.new(1,1,1)};
     angle = {false, Color3.new(1,1,1)};
@@ -200,17 +200,10 @@ function esp:init()
     end
 
     for _,v in next, players:GetPlayers() do
-        if v.Name == TargetPlayer then 
+        if v ~= players.LocalPlayer then
             esp.new(v);
         end
     end
-
-    for _,v in next, players:GetPlayers() do
-        if v.Name == TargetPlayer then 
-            esp.new(v);
-        end
-    end
-
 
     table.insert(connections, players.PlayerAdded:Connect(esp.new));
     table.insert(connections, players.PlayerRemoving:Connect(esp.remove));
@@ -272,20 +265,6 @@ function esp:init()
                         data.chams.Adornee = data.chams.Enabled and char or nil;
                         data.chams.Parent = data.chams.Enabled and char or nil;
                     end
-
-                    data.chamsSpec.Enabled = esp.chamsSpec[1] and pass;
-                    if data.chams.Adornee ~= (data.chamsSpec.Enabled and char or nil) then
-                        data.chams.Adornee = data.chamsSpec.Enabled and char or nil;
-                        data.chams.Parent = data.chamsSpec.Enabled and char or nil;
-                    end
-
-                    if data.chamsSpec.Enabled then
-                        data.chams.FillColor = esp.chamsSpec[2];
-                        data.chams.OutlineColor = esp.chamsSpec[3];
-                        data.chams.FillTransparency = esp.chamsSpec[4];
-                        data.chams.OutlineTransparency = esp.chamsSpec[5];
-                    end
-
                     if data.chams.Enabled then
                         data.chams.FillColor = esp.chams[2];
                         data.chams.OutlineColor = esp.chams[3];
@@ -496,7 +475,6 @@ function esp:init()
     )
 
 end
-
 
 getgenv().esp = esp;
 return esp
