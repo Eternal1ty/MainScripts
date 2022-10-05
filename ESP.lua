@@ -1,8 +1,8 @@
+--[[
 if esp then
    esp:unload();
 end
-
-local players = game:GetService("Players")
+]]
 
 local connections = {};
 
