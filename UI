@@ -740,6 +740,13 @@ function library:init()
     if not isfile(self.cheatname..'_enemylist.txt') then
         writefile(self.cheatname..'_enemylist.txt', http:JSONEncode({}))
     end
+    
+    function self:SetTheme(theme)
+        for i,v in next, theme do
+            self.theme[i] = v;
+        end
+        self.UpdateThemeColors();
+    end
 
     function self:GetConfig(name)
         if isfile(self.cheatname..'/'..self.gamename..'/configs/'..name..self.fileext) then
