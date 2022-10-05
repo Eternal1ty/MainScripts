@@ -470,9 +470,5 @@ function esp:init()
 
 end
 
-do
-   esp:init()
-end
-
 getgenv().esp = esp;
 return esp
