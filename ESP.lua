@@ -63,7 +63,7 @@ local esp = {
     angle = {false, Color3.new(1,1,1)};
     tracer = {false, Color3.new(1,1,1)};
     skeleton = {false, Color3.new(1,1,1)};
-    outline = {false, Color3.new(0,0,0)};
+    outline = {true, Color3.new(0,0,0)};
 };
 
 esp.skeletonLayout = {
