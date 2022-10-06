@@ -4,6 +4,8 @@ if esp then
 end
 ]]
 
+local players = game:GetService('Players');
+
 local connections = {};
 
 local espTextScale;
