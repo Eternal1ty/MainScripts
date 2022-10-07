@@ -3,7 +3,7 @@ if getgenv().esp ~= nil then
 end
 
 local esp = {
-    enabled        = true;
+    enabled        = false;
     teamcheck      = false;
     displayname    = false;
     limitdistance  = false;
