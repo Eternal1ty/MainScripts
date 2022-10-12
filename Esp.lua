@@ -366,13 +366,13 @@ function esp:init()
                         v[1].Color = color or esp.box[2];
                         v[2].Color = esp.outline[2];
                     end
-                elseif esp.custombox == 'trans' then
+                elseif esp.custombox == 'etrx.al' then
                     for i = 1,8 do
                         local drawing = drawings.custombox[i]
                         if i == 7 or i == 8 then
                             drawing.set('From', position + newVector2(0, i == 8 and size.Y or 0))
                             drawing.set('To', position + newVector2(size.X + 1, i == 8 and size.Y or 0))
-                            drawing[1].Color = fromrgb(90,200,250);
+                            drawing[1].Color = fromrgb(130,0,0);
                             drawing[2].Color = esp.outline[2];
                             drawing[1].Transparency = min(esp.box[3], transparency);
                             drawing[2].Transparency = min(esp.box[3], transparency);
@@ -381,7 +381,7 @@ function esp:init()
                             local pos = i % 3
                             drawing.set('From', position + newVector2(left and 0 or size.X, size.Y / 3 + ((pos-1) * size.Y / 3)));
                             drawing.set('To', position + newVector2(left and 0 or size.X, size.Y / 3 + (pos * size.Y / 3)));
-                            drawing[1].Color = pos == 1 and fromrgb(255,255,255) or fromrgb(255,135,255);
+                            drawing[1].Color = pos == 1 and fromrgb(255,255,255) or fromrgb(0,0,0);
                             drawing[1].Transparency = min(esp.box[3], transparency);
                             drawing[2].Transparency = min(esp.box[3], transparency);
                         end
