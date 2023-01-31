@@ -12,7 +12,7 @@
 
 -- // Load
 
-local startupArgs = ({...})[1] or {}
+--local startupArgs = ({...})[1] or {}
 
 if library then
     library:Unload();
